@@ -1,0 +1,11 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: fleet-labels-test
+  project: kalyan-fleetpro2
+spec:
+  fleet:
+    kind: clusters
+    projects:
+    - name: kalyan-fleetpro2
+status: {}

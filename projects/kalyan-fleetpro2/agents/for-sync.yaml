@@ -7,6 +7,5 @@ spec:
   active: true
   cluster:
     name: kalyan-fleet02
-  sharing: {}
   type: Cluster
   version: r1.25.0
