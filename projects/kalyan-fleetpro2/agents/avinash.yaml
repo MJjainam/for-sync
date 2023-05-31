@@ -1,0 +1,11 @@
+apiVersion: gitops.k8smgmt.io/v3
+kind: Agent
+metadata:
+  name: avinash
+  project: kalyan-fleetpro2
+spec:
+  active: true
+  cluster:
+    name: kalyan-fleet02
+  type: Cluster
+  version: r1.26.0
