@@ -1,0 +1,71 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: Cluster
+metadata:
+  labels:
+    org: rafay
+    team: cloud-engg
+  name: kalyan-fleet02
+  project: kalyan-fleetpro2
+spec:
+  blueprintConfig:
+    name: minimal
+    version: Latest
+  cloudCredentials: kalyaneks
+  config:
+    addons:
+    - name: aws-ebs-csi-driver
+      version: latest
+    managedNodeGroups:
+    - amiFamily: AmazonLinux2
+      desiredCapacity: 2
+      iam:
+        withAddonPolicies:
+          autoScaler: true
+      instanceTypes:
+      - t3.xlarge
+      maxSize: 65
+      minSize: 0
+      name: fleet2-mgng1
+      version: "1.24"
+      volumeSize: 80
+      volumeType: gp3
+    metadata:
+      name: kalyan-fleet02
+      region: us-west-2
+      tags:
+        email: kalyan@rafay.co
+        env: qa
+      version: "1.24"
+    network:
+      cni:
+        name: aws-cni
+    nodeGroups:
+    - amiFamily: AmazonLinux2
+      desiredCapacity: 1
+      iam:
+        withAddonPolicies:
+          autoScaler: true
+          imageBuilder: true
+      instancesDistribution:
+        instanceTypes:
+        - t3.xlarge
+      maxSize: 20
+      minSize: 0
+      name: fleet2-selfngroup1
+      tags:
+        email: kalyan@rafay.co
+        env: qa
+      version: "1.24"
+      volumeSize: 80
+      volumeType: gp3
+    vpc:
+      cidr: 192.168.0.0/16
+      clusterEndpoints:
+        privateAccess: false
+        publicAccess: true
+      nat:
+        gateway: Single
+  proxyConfig: {}
+  sharing:
+    enabled: true
+  type: aws-eks

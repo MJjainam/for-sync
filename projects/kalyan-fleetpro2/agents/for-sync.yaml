@@ -1,0 +1,12 @@
+apiVersion: gitops.k8smgmt.io/v3
+kind: Agent
+metadata:
+  name: for-sync
+  project: kalyan-fleetpro2
+spec:
+  active: true
+  cluster:
+    name: kalyan-fleet02
+  sharing: {}
+  type: Cluster
+  version: r1.25.0

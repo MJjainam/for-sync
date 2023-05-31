@@ -1,0 +1,91 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: kalyan-prehook-proj2
+  project: kalyan-fleetpro2
+spec:
+  agents:
+  - name: may12-cdagent
+  fleet:
+    kind: clusters
+    labels:
+      org: rafay
+      team: qa
+    projects:
+    - name: kalyan-fleetpro2
+    - name: kalyan-fleetpro
+    - name: kalyanfleetproj4
+  operationWorkflow:
+    operations:
+    - action:
+        name: set max node operation
+        patchConfig:
+        - op: replace
+          path: .spec.config.managedNodeGroups[0].maxSize
+          value: 99
+        type: patch
+      name: set max limit to ng
+      prehooks:
+      - containerConfig:
+          commands:
+          - test
+          - -f
+          - /rafay/test/test.txt
+          image: registry.dev.rafay-edge.net/rafay/prehookcheck:v1
+        name: set max prehook
+status:
+  jobStatus:
+    lastUpdated: "2023-05-12T08:30:58Z"
+    reason: |-
+      3 problems:
+
+      - activity failed: kalyanfleetproj4-kalyan-fleet4-set max prehook: error initializing k8s manager for activity id 01H07H9PGFH03DHJC22MT8VVVG name kalyanfleetproj4-kalyan-fleet4-set max prehook: error creating secret run-envs-01h07h9pgfh03dhjc22mt8vvvg for run-3d996119188ab986-01h07h9pgfh03dhjc22mt8vvvg: admission webhook "rafay.drift.validate" denied the request: action cannot be performed because it is a system protected resource
+      - activity failed: kalyan-fleetpro-kalyan-multifleet-set max prehook: error initializing k8s manager for activity id 01H07H9PGFH03DHJC22RW9ZNY9 name kalyan-fleetpro-kalyan-multifleet-set max prehook: error creating secret run-envs-01h07h9pgfh03dhjc22rw9zny9 for run-c90f27162adfc653-01h07h9pgfh03dhjc22rw9zny9: admission webhook "rafay.drift.validate" denied the request: action cannot be performed because it is a system protected resource
+      - activity failed: kalyan-fleetpro-kalyan-fleet001-set max prehook: error initializing k8s manager for activity id 01H07H9PGFH03DHJC22H36YWY1 name kalyan-fleetpro-kalyan-fleet001-set max prehook: error creating secret run-envs-01h07h9pgfh03dhjc22h36ywy1 for run-d1fdac7e45bed433-01h07h9pgfh03dhjc22h36ywy1: admission webhook "rafay.drift.validate" denied the request: action cannot be performed because it is a system protected resource
+    status: completed
+  resourcesStatus:
+  - name: kalyan-fleet4
+    operations:
+    - action:
+        lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max node operation
+        status: waiting
+      prehooks:
+      - lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max prehook
+        reason: 'error initializing k8s manager for activity id 01H07H9PGFH03DHJC22MT8VVVG
+          name kalyanfleetproj4-kalyan-fleet4-set max prehook: error creating secret
+          run-envs-01h07h9pgfh03dhjc22mt8vvvg for run-3d996119188ab986-01h07h9pgfh03dhjc22mt8vvvg:
+          admission webhook "rafay.drift.validate" denied the request: action cannot
+          be performed because it is a system protected resource'
+        status: fail
+    project: kalyanfleetproj4
+  - name: kalyan-fleet001
+    operations:
+    - action:
+        lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max node operation
+        status: waiting
+      prehooks:
+      - lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max prehook
+        reason: 'error initializing k8s manager for activity id 01H07H9PGFH03DHJC22H36YWY1
+          name kalyan-fleetpro-kalyan-fleet001-set max prehook: error creating secret
+          run-envs-01h07h9pgfh03dhjc22h36ywy1 for run-d1fdac7e45bed433-01h07h9pgfh03dhjc22h36ywy1:
+          admission webhook "rafay.drift.validate" denied the request: action cannot
+          be performed because it is a system protected resource'
+        status: fail
+    - action:
+        lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max node operation
+        status: waiting
+      prehooks:
+      - lastUpdated: "2023-05-12T08:30:58Z"
+        name: set max prehook
+        reason: 'error initializing k8s manager for activity id 01H07H9PGFH03DHJC22RW9ZNY9
+          name kalyan-fleetpro-kalyan-multifleet-set max prehook: error creating secret
+          run-envs-01h07h9pgfh03dhjc22rw9zny9 for run-c90f27162adfc653-01h07h9pgfh03dhjc22rw9zny9:
+          admission webhook "rafay.drift.validate" denied the request: action cannot
+          be performed because it is a system protected resource'
+        status: fail
+    project: kalyan-fleetpro
