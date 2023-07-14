@@ -1,0 +1,11 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: fasd
+  project: defaultproject
+spec:
+  fleet:
+    kind: clusters
+    projects:
+    - name: defaultproject
+status: {}

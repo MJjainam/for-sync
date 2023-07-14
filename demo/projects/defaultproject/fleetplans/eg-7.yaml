@@ -1,0 +1,79 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: eg-7
+  project: defaultproject
+spec:
+  fleet:
+    kind: clusters
+    labels:
+      fruit: apple
+    projects:
+    - name: defaultproject
+    - name: jaiproj
+  operationWorkflow:
+    operations:
+    - action:
+        description: cdcdcdc444
+        name: cdcdcd123
+        patchConfig:
+        - op: replace
+          path: .spec.config.nodeGroups[0].desiredCapacity
+          value: ""
+        type: patch
+      name: dddddd
+      prehooks:
+      - containerConfig:
+          env:
+            a1: b1
+            v4: v2
+          image: tdsd
+          runner: cluster
+        description: "32"
+        inject:
+        - KUBECONFIG
+        name: t13
+      - containerConfig:
+          env:
+            g2: j3
+            k2: x2
+          image: dasd
+          runner: cluster
+        description: sd
+        name: t4
+status:
+  jobStatus:
+    lastUpdated: "2023-07-04T06:11:07Z"
+    reason: |-
+      activity failed: jaiproj-jai-eks-4-t13: error initializing k8s manager for activity id 01H4FR80G464CRHR3A9PX3HF9V name jaiproj-jai-eks-4-t13: error checking namespace rafay-system for run-jaiproj-jai-eks-4-t13-01h4fr80g464crhr3a9px3hf9v: All attempts fail:
+      #1: ERROR: failed to forward request to cluster. Please retry
+      #2: ERROR: failed to forward request to cluster. Please retry
+      #3: ERROR: failed to forward request to cluster. Please retry
+      #4: ERROR: failed to forward request to cluster. Please retry
+      #5: ERROR: failed to forward request to cluster. Please retry
+    status: completed_with_failures
+  resourcesStatus:
+  - name: jai-eks-4
+    operations:
+    - action:
+        description: cdcdcdc444
+        lastUpdated: "2023-07-04T06:11:07Z"
+        name: cdcdcd123
+        status: waiting
+      prehooks:
+      - description: "32"
+        lastUpdated: "2023-07-04T06:11:07Z"
+        name: t13
+        reason: |-
+          error initializing k8s manager for activity id 01H4FR80G464CRHR3A9PX3HF9V name jaiproj-jai-eks-4-t13: error checking namespace rafay-system for run-jaiproj-jai-eks-4-t13-01h4fr80g464crhr3a9px3hf9v: All attempts fail:
+          #1: ERROR: failed to forward request to cluster. Please retry
+          #2: ERROR: failed to forward request to cluster. Please retry
+          #3: ERROR: failed to forward request to cluster. Please retry
+          #4: ERROR: failed to forward request to cluster. Please retry
+          #5: ERROR: failed to forward request to cluster. Please retry
+        status: fail
+      - description: sd
+        lastUpdated: "2023-07-04T06:11:07Z"
+        name: t4
+        status: waiting
+    project: jaiproj

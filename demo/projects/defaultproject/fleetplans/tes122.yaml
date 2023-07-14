@@ -1,0 +1,36 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: tes122
+  project: defaultproject
+spec:
+  fleet:
+    kind: clusters
+    labels:
+      rafay.dev/clusterType: azure-aks
+    projects:
+    - name: defaultproject
+  operationWorkflow:
+    operations:
+    - action:
+        description: Scale
+        name: action1
+        patchConfig:
+        - op: replace
+          path: .spec.config.spec.nodePools.properties.count
+          value: 1
+        type: patch
+      name: op1
+      prehooks:
+      - containerConfig:
+          arguments:
+          - -c
+          - --
+          - test -f $FILE_PATH
+          env:
+            FILE_PATH: /rafay/test/test.txt
+          image: registry.dev.rafay-edge.net/rafay/prehookcheck:v1
+          runner: Cluster
+        description: aa
+        name: hook1
+status: {}
