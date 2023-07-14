@@ -1,0 +1,35 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: eg-10
+  project: defaultproject
+spec:
+  agents:
+  - name: engine-agent
+  fleet:
+    kind: clusters
+    labels:
+      fruit: banana
+      veg: tomato
+    projects:
+    - name: defaultproject
+  operationWorkflow:
+    operations:
+    - action:
+        description: Patching
+        patchConfig:
+        - op: replace
+          path: .spec.config.spec.nodePools[0].properties.count
+          value: 2
+        type: patch
+      prehooks:
+      - containerConfig:
+          arguments:
+          - get
+          - po
+          - -A
+          image: bitnami/kubectl
+          runner: cluster
+        description: List all pods
+        inject:
+        - KUBECONFIG
