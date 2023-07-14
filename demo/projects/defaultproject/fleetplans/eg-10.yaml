@@ -15,7 +15,9 @@ spec:
     - name: defaultproject
   operationWorkflow:
     operations:
-    - action:
+    - name: op1
+      action:
+        name: action1
         description: Patching
         patchConfig:
         - op: replace
@@ -23,7 +25,8 @@ spec:
           value: 2
         type: patch
       prehooks:
-      - containerConfig:
+      - name: prehook1
+        containerConfig:
           arguments:
           - get
           - po
