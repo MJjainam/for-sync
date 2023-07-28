@@ -17,7 +17,7 @@ spec:
     - action:
         controlPlaneUpgradeConfig:
           version: 1.24.10
-        description: upgrading control plane A
+        description: upgrading control plane A kalyan
         name: action1
         nodeGroupsAndControlPlaneUpgradeConfig: {}
         nodeGroupsUpgradeConfig: {}
