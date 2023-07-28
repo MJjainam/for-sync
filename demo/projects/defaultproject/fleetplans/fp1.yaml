@@ -28,7 +28,6 @@ spec:
           arguments:
           - get
           - po
-          - -A
           image: bitnami/kubectl
           runner: cluster
         description: list all pods 10
