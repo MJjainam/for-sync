@@ -19,7 +19,7 @@ status:
     - action:
         description: Increasing the desired capacity
         lastUpdated: "2023-05-19T04:08:11Z"
-        name: gg
+        name: ggpp
         reason: 'activity poll again: jaiproj-jai-eks-4-gggg'
         status: success
     project: jaiproj
