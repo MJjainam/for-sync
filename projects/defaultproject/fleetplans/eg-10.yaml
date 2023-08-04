@@ -8,3 +8,4 @@ spec:
     kind: clusters
     projects:
     - name: defaultproject
+    - name: kalyanfleetproj4
