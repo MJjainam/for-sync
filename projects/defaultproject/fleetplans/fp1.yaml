@@ -1,0 +1,74 @@
+apiVersion: infra.k8smgmt.io/v3
+kind: FleetPlan
+metadata:
+  name: fp1
+  project: defaultproject
+spec:
+  agents:
+  - name: kalyan-docker
+  fleet:
+    kind: clusters
+    labels:
+      role: qa
+    projects:
+    - name: defaultproject
+  operationWorkflow:
+    operations:
+    - action:
+        controlPlaneUpgradeConfig:
+          version: 1.24.10
+        description: upgrading control plane A kalyan
+        name: action1
+        nodeGroupsAndControlPlaneUpgradeConfig: {}
+        nodeGroupsUpgradeConfig: {}
+        type: controlPlaneUpgrade
+      name: op1
+      prehooks:
+      - containerConfig:
+          arguments:
+          - get
+          - po
+          image: bitnami/kubectl
+          runner: cluster
+        description: list all pods 10
+        httpConfig: {}
+        inject:
+        - KUBECONFIG
+        name: prehooks1
+      - containerConfig:
+          arguments:
+          - get
+          - po
+          - -A
+          image: bitnami/kubectl
+          runner: cluster
+        description: list all pods 2
+        httpConfig: {}
+        inject:
+        - KUBECONFIG
+        name: prehooks2
+    - action:
+        controlPlaneUpgradeConfig: {}
+        description: upgrading control plane and nodegroup
+        name: action2
+        nodeGroupsAndControlPlaneUpgradeConfig: {}
+        nodeGroupsUpgradeConfig:
+          names:
+          - ng1
+          - ng2
+          version: 1.24.10
+        type: nodeGroupsUpgrade
+      name: op2
+      posthooks:
+      - containerConfig:
+          arguments:
+          - get
+          - po
+          - -A
+          image: bitnami/kubectl
+          runner: cluster
+        description: list all pods 1
+        httpConfig: {}
+        inject:
+        - KUBECONFIG
+        name: posthooks1
