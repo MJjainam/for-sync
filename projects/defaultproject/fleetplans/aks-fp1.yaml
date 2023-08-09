@@ -28,7 +28,8 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: cluster
+          runner:
+            type: cluster
         inject:
         - KUBECONFIG
         name: hook1
