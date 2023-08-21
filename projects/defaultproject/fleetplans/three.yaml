@@ -3,6 +3,8 @@ kind: FleetPlan
 metadata:
   name: three
   project: defaultproject
+  labels: 
+    a: b
 spec:
   fleet:
     kind: clusters
