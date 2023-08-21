@@ -3,6 +3,8 @@ kind: FleetPlan
 metadata:
   name: two
   project: defaultproject
+  labels:
+    a: sd
 spec:
   fleet:
     kind: clusters
