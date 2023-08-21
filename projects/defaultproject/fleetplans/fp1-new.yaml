@@ -30,7 +30,7 @@ spec:
           image: bitnami/kubectl
           runner:
             type: cluster
-        description: list all pods 10
+        description: list all pods 101
         inject:
         - KUBECONFIG
         name: prehooks1
