@@ -13,7 +13,7 @@ spec:
   operationWorkflow:
     operations:
     - action:
-        description: Upgrading ng to 1.25.11 112233445566
+        description: Upgrading ng to 1.25.11 11223344556677
         name: ng-upgrade
         nodeGroupsUpgradeConfig:
           names:
