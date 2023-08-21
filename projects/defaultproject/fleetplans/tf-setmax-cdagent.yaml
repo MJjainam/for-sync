@@ -47,7 +47,7 @@ spec:
         patchConfig:
         - op: replace
           path: .spec.config.managedNodeGroups[0].maxSize
-          value: 66
+          value: 665
         type: patch
       name: scale-operation
       posthooks:
