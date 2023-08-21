@@ -28,8 +28,9 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
-        description: list all pods 10
+          runner:
+            type: cluster
+        description: list all pods 10 11
         inject:
         - KUBECONFIG
         name: prehooks1
@@ -39,7 +40,8 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
+          runner:
+            type: agent
         description: list all pods 2
         inject:
         - KUBECONFIG
@@ -63,7 +65,8 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
+          runner:
+            type: agent
         description: list all pods 1
         inject:
         - KUBECONFIG
