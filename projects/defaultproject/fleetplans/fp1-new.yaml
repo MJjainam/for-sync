@@ -1,7 +1,7 @@
 apiVersion: infra.k8smgmt.io/v3
 kind: FleetPlan
 metadata:
-  name: fp2-tf
+  name: fp1-new
   project: defaultproject
 spec:
   agents:
@@ -9,7 +9,7 @@ spec:
   fleet:
     kind: clusters
     labels:
-      role: qa
+      role1: qa1
     projects:
     - name: defaultproject
   operationWorkflow:
@@ -17,7 +17,7 @@ spec:
     - action:
         controlPlaneUpgradeConfig:
           version: 1.24.10
-        description: upgrading control plane control plane
+        description: upgrading control plane
         name: action1
         type: controlPlaneUpgrade
       name: op1
@@ -28,7 +28,8 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
+          runner:
+            type: cluster
         description: list all pods 10
         inject:
         - KUBECONFIG
@@ -39,7 +40,8 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
+          runner:
+            type: cluster
         description: list all pods 2
         inject:
         - KUBECONFIG
@@ -50,7 +52,7 @@ spec:
         patchConfig:
         - op: replace
           path: .spec.config.managedNodeGroups[0].maxSize
-          value: "18"
+          value: 18
         - op: replace
           path: .spec.blueprintConfig.name
           value: minimal
@@ -63,8 +65,19 @@ spec:
           - po
           - -A
           image: bitnami/kubectl
-          runner: {}
+          runner:
+            type: cluster
         description: list all pods 1
         inject:
         - KUBECONFIG
         name: posthooks1
+    - action:
+        description: upgrading nodegroup
+        name: action3
+        nodeGroupsUpgradeConfig:
+          names:
+          - ng1
+          - ng2
+          version: 1.24.10
+        type: nodeGroupsUpgrade
+      name: op3

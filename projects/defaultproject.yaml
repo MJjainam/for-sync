@@ -4,3 +4,4 @@ metadata:
   name: defaultproject
 spec:
   default: true
+  driftWebhook: {}

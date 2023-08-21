@@ -5,70 +5,31 @@ metadata:
   project: defaultproject
 spec:
   agents:
-  - name: kalyan-docker
+  - name: for-sync1
   fleet:
     kind: clusters
     labels:
-      role: qa
+      non: existent
     projects:
     - name: defaultproject
   operationWorkflow:
     operations:
     - action:
-        controlPlaneUpgradeConfig:
-          version: 1.24.10
-        description: upgrading control plane A kalyanasd Hi Byeasdasdasdasdasdasd
-        name: action1
-        nodeGroupsAndControlPlaneUpgradeConfig: {}
-        nodeGroupsUpgradeConfig: {}
-        type: controlPlaneUpgrade
-      name: op1
-      prehooks:
-      - containerConfig:
-          arguments:
-          - get
-          - po
-          image: bitnami/kubectl
-          runner: cluster
-        description: list all pods 10
-        httpConfig: {}
-        inject:
-        - KUBECONFIG
-        name: prehooks1
-      - containerConfig:
-          arguments:
-          - get
-          - po
-          - -A
-          image: bitnami/kubectl
-          runner: cluster
-        description: list all pods 2
-        httpConfig: {}
-        inject:
-        - KUBECONFIG
-        name: prehooks2
-    - action:
-        controlPlaneUpgradeConfig: {}
-        description: upgrading control plane and nodegroup asdasd
-        name: action2
-        nodeGroupsAndControlPlaneUpgradeConfig: {}
+        description: upgrading nodegroup
+        name: action3
         nodeGroupsUpgradeConfig:
           names:
           - ng1
           - ng2
           version: 1.24.10
         type: nodeGroupsUpgrade
-      name: op2
-      posthooks:
-      - containerConfig:
-          arguments:
-          - get
-          - po
-          - -A
-          image: bitnami/kubectl
-          runner: cluster
-        description: list all pods 1
-        httpConfig: {}
-        inject:
-        - KUBECONFIG
-        name: posthooks1
+      name: op3
+    - action:
+        description: 2r
+        name: ss1r
+        patchConfig:
+        - op: replace
+          path: threer
+          value: 4r
+        type: patch
+      name: ref
