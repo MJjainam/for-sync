@@ -4,7 +4,7 @@ metadata:
   name: two
   project: defaultproject
   labels:
-    abb: sdaasasd
+    abb: sdaasasdasd
 spec:
   fleet:
     kind: clusters
